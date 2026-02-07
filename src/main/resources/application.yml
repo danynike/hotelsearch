@@ -1,0 +1,24 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: hotelsearch
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/hotelsearch
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: hotelsearch-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: '*'
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+hotel:
+  kafka:
+    topic: hotel_availability_searches

@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: hotelsearch-test
+  kafka:
+    consumer:
+      group-id: hotelsearch-test-group
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/hotelsearch-test
+
+hotel:
+  kafka:
+    topic: hotel_availability_searches
