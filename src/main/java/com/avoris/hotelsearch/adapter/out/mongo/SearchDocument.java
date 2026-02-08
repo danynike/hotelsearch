@@ -1,5 +1,6 @@
 package com.avoris.hotelsearch.adapter.out.mongo;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -18,15 +19,15 @@ public class SearchDocument {
     @Id
     private String id;
     private String hotelId;
-    private String checkIn;
-    private String checkOut;
+    private LocalDate checkIn;
+    private LocalDate checkOut;
     private List<Integer> ages;
     private String normalizedKey;
 
     public SearchDocument() {
     }
 
-    public SearchDocument(final String id, final String hotelId, final String checkIn, final String checkOut, final List<Integer> ages,
+    public SearchDocument(final String id, final String hotelId, final LocalDate checkIn, final LocalDate checkOut, final List<Integer> ages,
             final String normalizedKey) {
         this.id = id;
         this.hotelId = hotelId;
@@ -53,11 +54,11 @@ public class SearchDocument {
         return hotelId;
     }
 
-    public String getCheckIn() {
+    public LocalDate getCheckIn() {
         return checkIn;
     }
 
-    public String getCheckOut() {
+    public LocalDate getCheckOut() {
         return checkOut;
     }
 
@@ -77,11 +78,11 @@ public class SearchDocument {
         this.hotelId = hotelId;
     }
 
-    public void setCheckIn(final String checkIn) {
+    public void setCheckIn(final LocalDate checkIn) {
         this.checkIn = checkIn;
     }
 
-    public void setCheckOut(final String checkOut) {
+    public void setCheckOut(final LocalDate checkOut) {
         this.checkOut = checkOut;
     }
 
@@ -92,4 +93,5 @@ public class SearchDocument {
     public void setNormalizedKey(final String normalizedKey) {
         this.normalizedKey = normalizedKey;
     }
+
 }

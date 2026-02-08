@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -58,9 +59,10 @@ class SearchControllerTest {
     @Test
     void count_returnsSearchWithCount() throws Exception {
         when(getSearchCountUseCase.getById(any(SearchId.class)))
-                .thenReturn(new SearchWithCount("abc-123", "1234aBc", "29/12/2023", "31/12/2023", List.of(1, 3, 29, 30), 2L));
+                .thenReturn(new SearchWithCount("abc-123", "1234aBc", LocalDate.of(2023, 12, 29), LocalDate.of(2023, 12, 31), List.of(1, 3, 29, 30), 2L));
 
         mockMvc.perform(get("/api/1/count").param("searchId", "abc-123")).andExpect(status().isOk()).andExpect(jsonPath("$.searchId").value("abc-123"))
-                .andExpect(jsonPath("$.count").value(2)).andExpect(jsonPath("$.search.ages[0]").value(1));
+                .andExpect(jsonPath("$.count").value(2)).andExpect(jsonPath("$.search.ages[0]").value(1))
+                .andExpect(jsonPath("$.search.checkIn").value("29/12/2023")).andExpect(jsonPath("$.search.checkOut").value("31/12/2023"));
     }
 }

@@ -82,6 +82,7 @@ class SearchFlowIntegrationExternalDockerTest {
 
         mockMvc.perform(get("/api/1/count").param("searchId", created2.searchId())).andExpect(status().isOk())
                 .andExpect(jsonPath("$.searchId", is(created2.searchId()))).andExpect(jsonPath("$.count", is(2)))
-                .andExpect(jsonPath("$.search.ages", hasSize(4)));
+                .andExpect(jsonPath("$.search.ages", hasSize(4))).andExpect(jsonPath("$.search.checkIn", is("29/12/2023")))
+                .andExpect(jsonPath("$.search.checkOut", is("31/12/2023")));
     }
 }

@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,7 @@ class CreateSearchServiceTest {
         final PublishSearchPort publishPort = mock(PublishSearchPort.class);
         final CreateSearchService service = new CreateSearchService(publishPort);
 
-        final var command = new CreateSearchCommand("1234aBc", "29/12/2023", "31/12/2023", List.of(30, 29, 1, 3));
+        final var command = new CreateSearchCommand("1234aBc", LocalDate.of(2023, 12, 29), LocalDate.of(2023, 12, 31), List.of(30, 29, 1, 3));
         final var created = service.create(command);
 
         assertThat(created.searchId()).isNotBlank();
@@ -31,6 +32,6 @@ class CreateSearchServiceTest {
         final Search published = captor.getValue();
         assertThat(published.id().value()).isEqualTo(created.searchId());
         assertThat(published.hotelId().value()).isEqualTo("1234aBc");
-        assertThat(published.normalizedKey().value()).isEqualTo("1234aBc|29/12/2023|31/12/2023|1,3,29,30");
+        assertThat(published.normalizedKey().value()).isEqualTo("1234aBc|2023-12-29|2023-12-31|1,3,29,30");
     }
 }
