@@ -21,8 +21,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.avoris.hotelsearch.adapter.in.web.dto.SearchCreatedResponse;
-import com.avoris.hotelsearch.adapter.out.mongo.SpringDataSearchRepository;
+import com.avoris.hotelsearch.infrastructure.adapter.in.web.dto.SearchCreatedResponse;
+import com.avoris.hotelsearch.infrastructure.adapter.out.mongo.SpringDataSearchRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @ActiveProfiles("test")

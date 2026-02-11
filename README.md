@@ -107,3 +107,26 @@ Outbound adapters (salida):
 Kafka Producer SearchKafkaProducerAdapter
 Mongo Adapter SearchMongoRepositoryAdapter
 Motivo: infraestructura intercambiable. Puedes cambiar Mongo por PostgreSQL o Kafka por otra cola sin romper dominio/casos de uso.
+
+## Quick Start
+### 1) Infraestructura de inicio (Kafka + Mongo)
+```
+docker-compose up -d
+```
+# 2) Ejecutar la aplicación
+```
+mvn spring-boot:run
+```
+# 3) Ejecutar pruebas unitarias
+```
+mvn test
+```
+# 4) Ejecutar pruebas de integración (Testcontainers !!Requisitos: (Docker engine running and accessible)¡¡)
+```
+docker ps
+mvn test
+```
+# 5) documentacion swagger
+http://localhost:8080/swagger-ui/index.html
+
+http://localhost:8080/v3/api-docs
